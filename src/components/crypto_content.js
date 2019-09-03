@@ -5,8 +5,8 @@ const CryptoContent = (props) => {
     const data = props.data;
 
     return (
-        <tbody className = "crypto__list--body">
-            <CryptoList data = { data } />
+        <tbody className="crypto__list--body">
+            <CryptoList data={data} />
         </tbody>
     );
 }
