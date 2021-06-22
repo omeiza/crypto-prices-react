@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 
 const CryptoListItem = (props) => {
     const index = props.count,

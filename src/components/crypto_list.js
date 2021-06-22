@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 import CryptoListItem from './crypto_list_item.js';
 
 const CryptoList = (props) => {
