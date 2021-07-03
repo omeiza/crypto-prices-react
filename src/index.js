@@ -25,7 +25,7 @@ class App extends Component {
 
     getCrytpoData() {
         let cryptoArray = this.objectToArray(cryptoObject[0]),
-            fsyms = new Array();
+            fsyms = [];
 
         cryptoArray.map((j) => fsyms.push(j));
         fsyms = fsyms.join(",");
