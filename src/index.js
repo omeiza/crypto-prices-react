@@ -16,11 +16,9 @@ class App extends Component {
     }
 
     objectToArray(object) {
-        const newArray = Object.keys(object).map((k) => {
+        return Object.keys(object).map((k) => {
             return object[k]
         });
-
-        return newArray;
     }
 
     getCrytpoData() {
@@ -32,10 +30,11 @@ class App extends Component {
 
         fetch(`https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${fsyms}&tsyms=USD`)
             .then(response => response.json())
+
             .then(data => this.setState({
                 crypto_result: data
-            })
-            )
+            }))
+
             .catch((err) => console.log(`Fetch error: ${err}`));
     }
 
