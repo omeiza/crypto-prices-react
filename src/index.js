@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import CryptoContent from './components/crypto_content.js';
 
-const cryptoObject = JSON.parse('[{"Bitcoin": "BTC","Ethereum": "ETH","Ripple": "XRP","Bitcoin Cash": "BCH","Cardano": "ADA","Litecoin": "LTC","Dash": "DASH","Monero": "XHR","Bitcoin Gold": "BTG","Ethereum Classic": "ETC","Zcash": "ZEC"}]');
-
 class App extends Component {
     constructor(props) {
         super(props);
@@ -15,6 +13,10 @@ class App extends Component {
         this.getCrytpoData();
     }
 
+    cryptoObject() {
+        return JSON.parse('[{"Bitcoin": "BTC","Ethereum": "ETH","Ripple": "XRP","Bitcoin Cash": "BCH","Cardano": "ADA","Litecoin": "LTC","Dash": "DASH","Monero": "XHR","Bitcoin Gold": "BTG","Ethereum Classic": "ETC","Zcash": "ZEC"}]');
+    }
+
     objectToArray(object) {
         return Object.keys(object).map((k) => {
             return object[k]
@@ -22,20 +24,27 @@ class App extends Component {
     }
 
     getCrytpoData() {
-        let cryptoArray = this.objectToArray(cryptoObject[0]),
+        let cryptoList = this.cryptoObject(),
+            cryptoArray = this.objectToArray(cryptoList[0]),
             fsyms = [];
 
         cryptoArray.map((j) => fsyms.push(j));
         fsyms = fsyms.join(",");
 
         fetch(`https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${fsyms}&tsyms=USD`)
-            .then(response => response.json())
+            .then((response) => {
+                return response.json()
+            })
 
-            .then(data => this.setState({
-                crypto_result: data
-            }))
+            .then((data) => {
+                this.setState({
+                    crypto_result: data
+                })
+            })
 
-            .catch((err) => console.log(`Fetch error: ${err}`));
+            .catch((err) => {
+                console.error(`Fetch error: ${err}`)
+            })
     }
 
     render() {
