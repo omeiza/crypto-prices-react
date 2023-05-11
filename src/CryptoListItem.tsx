@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const CryptoListItem = (props: { count: any; data: any; }) => {
-	const index = props.count;
-	const data = props.data;
+interface ListItemPropType {
+	count: number;
+	data: object;
+}
 
-	return (
-		<tr index = {index}>
-			<td>{index}</td>
-			<td>{data["USD"]["FROMSYMBOL"]}</td>
-			<td>{data["USD"]["PRICE"]}</td>
-			<td>{data["USD"]["SUPPLY"]}</td>
-			<td>{data["USD"]["CHANGE24HOUR"]}</td>
-		</tr>
-	)
+class CryptoListItem extends Component<ListItemPropType, {}> {
+	render() {
+		return (
+			<tr index = {index}>
+				<td>{index}</td>
+				<td>{this.props.data["USD"]["FROMSYMBOL"]}</td>
+				<td>{this.props.data["USD"]["PRICE"]}</td>
+				<td>{this.props.data["USD"]["SUPPLY"]}</td>
+				<td>{this.props.data["USD"]["CHANGE24HOUR"]}</td>
+			</tr>
+		)
+	}
 }
 
 export default CryptoListItem;
