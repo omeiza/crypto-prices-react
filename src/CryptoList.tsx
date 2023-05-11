@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CryptoListItem from './CryptoListItem';
-import { CryptoDataType } from "./crypto";
+import { CryptoDataType } from "./Crypto";
 
 interface listPropTypes {
 	data: CryptoDataType

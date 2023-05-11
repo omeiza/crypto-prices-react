@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom/client';
 import CryptoContent from './CryptoContent';
-import { CryptoDataType } from "./crypto";
+import { CryptoDataType } from "./Crypto";
 
 interface StateType {
     cryptoResult: CryptoDataType | null

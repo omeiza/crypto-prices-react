@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CryptoCurrencyDataType } from "./crypto";
+import { CryptoCurrencyDataType } from "./Crypto";
 
 interface ListItemPropType {
 	key: number;
