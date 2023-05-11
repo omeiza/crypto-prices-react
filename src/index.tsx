@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom/client';
-import CryptoContent from './CryptoContent.js';
+import CryptoContent from './CryptoContent';
+import { CryptoDataType } from "./crypto";
 
 interface StateType {
-    cryptoResult: object[] | null
+    cryptoResult: CryptoDataType | null
 }
 
-class App extends Component<{}, StateType> {
-    constructor(props: any) {
-        super(props);
+class App extends Component<{}, {}> {
+    componentDidMount() {
         this.getCryptoData();
     }
 
@@ -17,7 +17,7 @@ class App extends Component<{}, StateType> {
     }
 
     cryptoObject(): object[] {
-        return JSON.parse('[{"Bitcoin": "BTC","Ethereum": "ETH","Ripple": "XRP","Bitcoin Cash": "BCH","Cardano": "ADA","Litecoin": "LTC","Dash": "DASH","Monero": "XHR","Bitcoin Gold": "BTG","Ethereum Classic": "ETC","Zcash": "ZEC"}]');
+        return JSON.parse('{"Bitcoin": "BTC","Ethereum": "ETH","Ripple": "XRP","Bitcoin Cash": "BCH","Cardano": "ADA","Litecoin": "LTC","Dash": "DASH","Monero": "XHR","Bitcoin Gold": "BTG","Ethereum Classic": "ETC","Zcash": "ZEC"}');
     }
 
     objectToArray(thisObject: object[]): any[] {
@@ -32,20 +32,18 @@ class App extends Component<{}, StateType> {
             .then((response) => {
                 return response.json();
             })
-            .then((data: object[]) => {
+            .then((data: CryptoDataType) => {
                 this.setState({
                     cryptoResult: data
                 })
             })
             .catch((err) => {
                 console.error(`Fetch error: ${err}`)
-            })
+            });
     }
 
     render() {
-        if (!this.state.cryptoResult) {
-            return ( <p> Loading... </p> );
-        }
+        if (!this.state.cryptoResult) return ( <p> Loading... </p> );
 
         return (
             <table className="crypto__list">

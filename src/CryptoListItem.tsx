@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
+import { CryptoCurrencyDataType } from "./crypto";
 
 interface ListItemPropType {
+	key: number;
 	count: number;
-	data: object;
+	data: CryptoCurrencyDataType;
 }
 
 class CryptoListItem extends Component<ListItemPropType, {}> {
 	render() {
 		return (
-			<tr index = {index}>
-				<td>{index}</td>
+			<tr key = {this.props.count}>
+				<td>{this.props.count}</td>
 				<td>{this.props.data["USD"]["FROMSYMBOL"]}</td>
 				<td>{this.props.data["USD"]["PRICE"]}</td>
 				<td>{this.props.data["USD"]["SUPPLY"]}</td>

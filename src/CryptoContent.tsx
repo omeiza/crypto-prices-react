@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import CryptoList from './CryptoList.js';
+import CryptoList from './CryptoList';
+import { CryptoDataType } from "./crypto";
 
 interface contentPropType {
-	data: object[] | null
+	data: CryptoDataType
 }
 
 class CryptoContent extends Component<contentPropType, {}> {
