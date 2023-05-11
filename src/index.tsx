@@ -6,27 +6,29 @@ interface StateType {
     cryptoResult: object[] | null
 }
 
-class App extends Component<any, StateType> {
+class App extends Component<{}, StateType> {
     constructor(props: any) {
         super(props);
-        this.state = {
-            cryptoResult: null
-        }
         this.getCryptoData();
     }
 
-    cryptoObject(): object {
-        return JSON.parse('{"Bitcoin": "BTC","Ethereum": "ETH","Ripple": "XRP","Bitcoin Cash": "BCH","Cardano": "ADA","Litecoin": "LTC","Dash": "DASH","Monero": "XHR","Bitcoin Gold": "BTG","Ethereum Classic": "ETC","Zcash": "ZEC"}');
+    state: StateType = {
+        cryptoResult: null
     }
 
-    objectToArray(thisObject: object): string[] {
-        return Object.keys(thisObject).map((k) => {
-            return thisObject[k]
+    cryptoObject(): object[] {
+        return JSON.parse('[{"Bitcoin": "BTC","Ethereum": "ETH","Ripple": "XRP","Bitcoin Cash": "BCH","Cardano": "ADA","Litecoin": "LTC","Dash": "DASH","Monero": "XHR","Bitcoin Gold": "BTG","Ethereum Classic": "ETC","Zcash": "ZEC"}]');
+    }
+
+    objectToArray(thisObject: object[]): any[] {
+        return Object.keys(thisObject).map((k: any): any => {
+            return thisObject[k];
         });
     }
 
     getCryptoData() {
-        fetch(`https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${this.objectToArray(this.cryptoObject).join(",")}&tsyms=USD`)
+        const cryptoSymbols = this.cryptoObject();
+        fetch(`https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${(this.objectToArray(cryptoSymbols)).join(",")}&tsyms=USD`)
             .then((response) => {
                 return response.json();
             })
